@@ -1,0 +1,73 @@
+Circuit: * C:\Users\ryusl\OneDrive\Masaüstü\2021Spring\EE464\Homeworks\HW3_Local\LTSpiceFiles\Buck_Controller_Modeling_20kHz.asc
+
+Vin2: Removing PWL point (0.005,0)
+WARNING: Specified period is not longer than the sum of Trise, Tfall, and Ton for v3.  Increasing period to 5.0002e-006
+WARNING: Node N009 is floating.
+WARNING: Node NC_02 is floating.
+
+WARNING: Less than two connections to node NC_01.  This node is used by V4.
+WARNING: Less than two connections to node NC_02.  This node is used by V4.
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+Gmin = 0.000142725
+vernier = 0.5
+vernier = 0.25
+vernier = 0.125
+Gmin = 3.74144e-005
+vernier = 0.0625
+vernier = 0.03125
+vernier = 0.015625
+vernier = 0.0078125
+vernier = 0.00390625
+vernier = 0.00195313
+vernier = 0.000976563
+vernier = 0.000488281
+Gmin = 0
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+vernier = 0.25
+Source Step = 0.0177557%
+Starting source stepping with srcstepmethod=1
+Source Step = 3.0303%
+vernier = 0.25
+Source stepping failed
+
+Pseudo Transient succeeded in finding the operating point at 330.744 ms.
+Heightened Def Con from 0.000297324 to 0.000297324
+Heightened Def Con from 0.00122875 to 0.00122875
+Heightened Def Con from 0.00301326 to 0.00301326
+Heightened Def Con from 0.00310901 to 0.00310901
+Heightened Def Con from 0.00346403 to 0.00346403
+Heightened Def Con from 0.00435906 to 0.00435906
+Heightened Def Con from 0.00511869 to 0.00511869
+Heightened Def Con from 0.00581469 to 0.00581469
+Heightened Def Con from 0.00581975 to 0.00581975
+Heightened Def Con from 0.00796916 to 0.00796916
+Heightened Def Con from 0.0094249 to 0.0094249
+Heightened Def Con from 0.00972497 to 0.00972497
+Heightened Def Con from 0.00980424 to 0.00980424
+
+Date: Sun Jun 06 15:56:03 2021
+Total elapsed time: 7.322 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 1422140
+traniter = 1413613
+tranpoints = 436576
+accept = 324687
+rejected = 111926
+matrix size = 25
+fillins = 15
+solver = Normal
+Matrix Compiler1: 1.56 KB object code size  0.3/0.2/[0.1]
+Matrix Compiler2: 2.06 KB object code size  0.9/0.3/[0.2]
+

@@ -23,7 +23,7 @@ G_ideal = tf(num_ideal,den_ideal);
 
 figure(1);
 opts = bodeoptions('cstprefs');
-opts.FreqUnits = 'Hz';
+%opts.FreqUnits = 'Hz';
 opts.Title.String = 'Bode Plot of Buck Converter with and without ESR of Capacitor';
 opts.Title.FontSize = 16;
 %opts.XLabel.Limit = [1e]
@@ -40,14 +40,13 @@ set(findall(gcf,'Type','line'),'LineWidth',3)
 % legend('Non-Ideal','Ideal')
 % grid minor;
 %% This part is used to find poles and zeros of TF
-
 syms s;
 
-num_eqn = Vin*RL*(C*Rc*s+1);
+num_eqn = RL*(C*Rc*s+1);
 solve(num_eqn,s);
 zero1 = double(ans)/(2*pi);
 
-den_eqn = Vosc*(L*C*(s^2)*(RL+Rc)+s*(L+RL*C*Rc)+RL);
+den_eqn = (L*C*(s^2)*(RL+Rc)+s*(L+RL*C*Rc)+RL);
 solve(den_eqn,s);
 pole1 = abs(double(ans(1)))/(2*pi);
 pole2 = abs(double(ans(2)))/(2*pi);
@@ -57,15 +56,16 @@ pole2 = abs(double(ans(2)))/(2*pi);
 % pole1_ideal = abs(double(ans(1)));
 % pole2_ideal = abs(double(ans(2)));
 %% This part is used to find compensator poles&zeros
-fo = (1/5)*fsw;
+fo = (1/10)*fsw;
 Fp3 = fsw/2;
 teta = pi*(70/180);
 Fz2 = fo*sqrt((1-sin(teta))/(1+sin(teta)));
 Fp2 = fo*sqrt((1+sin(teta))/(1-sin(teta)));
+%Fp2 = 200e3;
 Fz1 = 0.5*Fz2;
 
 
-%% This part is used for Type III-B compensator
+%% This part is used for Type III-B compensator 40kHZ Crossover
 
 % Parameters
 Cf3 = 2.2e-9; % F
@@ -83,21 +83,68 @@ Cc2 = 390e-12; % F
 %Cc2 = 1/(2*pi*Rc1*Fp3);
 
 s = tf('s');
-num_comp = -(1+Rc1*Cc1*s)*(1+s*Cf3*(Rf1+Rf3));
+num_comp = (1+Rc1*Cc1*s)*(1+s*Cf3*(Rf1+Rf3));
 den_comp = s*Rf1*Cc1*(Rc1*Cc2*s+1)*(1+s*Rf3*Cf3);
 H = num_comp/den_comp;
 
+%% This part is used for Type III-B compensator 20kHZ Crossover
+
+% Parameters
+Cf3 = 2.2e-9; % F
+Rf3 = 634; % Ohm
+%Rf3 = 1/(2*pi*Cf3*Fp2);
+Rf1 = 20e3; % Ohm
+%Rf1 = (1/(2*pi*Cf3*Fz2))-Rf3;
+Rf2 = 11.5e3; % Ohm
+%Rf2 = (Vref/(Vo-Vref))*Rf1;
+Rc1 = 2.05e3; % Ohm
+%Rc1 = (2*pi*fo*L*C*Vosc)/(Vin*Cf3);
+Cc1 = 47e-9; % F
+%Cc1 = 1/(2*pi*Rc1*Fz1);
+Cc2 = 750e-12; % F
+%Cc2 = 1/(2*pi*Rc1*Fp3);
+
+s = tf('s');
+num_comp = (1+Rc1*Cc1*s)*(1+s*Cf3*(Rf1+Rf3));
+den_comp = s*Rf1*Cc1*(Rc1*Cc2*s+1)*(1+s*Rf3*Cf3);
+H = num_comp/den_comp;
+
+%% This part is used for Type III-B compensator 25kHZ Crossover
+
+% Parameters
+Cf3 = 2.2e-9; % F
+%Rf3 = 634; % Ohm
+Rf3 = 1/(2*pi*Cf3*Fp2);
+%Rf1 = 20e3; % Ohm
+Rf1 = (1/(2*pi*Cf3*Fz2))-Rf3;
+%Rf2 = 11.5e3; % Ohm
+Rf2 = (Vref/(Vo-Vref))*Rf1;
+%Rc1 = 2.05e3; % Ohm
+Rc1 = (2*pi*fo*L*C*Vosc)/(Vin*Cf3);
+%Cc1 = 47e-9; % F
+Cc1 = 1/(2*pi*Rc1*Fz1);
+%Cc2 = 750e-12; % F
+Cc2 = 1/(2*pi*Rc1*Fp3);
+
+s = tf('s');
+num_comp = (1+Rc1*Cc1*s)*(1+s*Cf3*(Rf1+Rf3));
+den_comp = s*Rf1*Cc1*(Rc1*Cc2*s+1)*(1+s*Rf3*Cf3);
+H = num_comp/den_comp;
 %% This part is used to combine transfer function
 % i.e. Getting loop gain
 k = Vo/Vref;
 %T = H*G_nonideal*(1/k);
-T = H*G_nonideal;
+T = H*G_nonideal*(1/Vosc);
 figure(2);
-bode(G_nonideal)
-hold on
-bode(T)
+opts = bodeoptions('cstprefs');
+opts.FreqUnits = 'Hz';
+opts.Title.String = 'Bode Plot of Loop Transfer Function, F0 = 20kHz';
+opts.Title.FontSize = 16;
+bode(G_nonideal,T,opts)
+%hold on
+%bode(T)
 %hold on
 %bode(H);
-set(findall(gcf,'Type','line'),'LineWidth',2)
-legend('Non-Ideal','Loop Gain','H')
+set(findall(gcf,'Type','line'),'LineWidth',4)
+legend('Plant','Loop','FontSize',16)
 grid minor;

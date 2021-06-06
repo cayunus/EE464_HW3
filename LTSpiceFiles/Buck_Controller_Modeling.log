@@ -1,6 +1,12 @@
 Circuit: * C:\Users\ryusl\OneDrive\Masaüstü\2021Spring\EE464\Homeworks\HW3_Local\LTSpiceFiles\Buck_Controller_Modeling.asc
 
+Vin1: Removing PWL point (0.005,0)
 WARNING: Specified period is not longer than the sum of Trise, Tfall, and Ton for v3.  Increasing period to 5.0002e-006
+WARNING: Node N009 is floating.
+WARNING: Node NC_02 is floating.
+
+WARNING: Less than two connections to node NC_01.  This node is used by V4.
+WARNING: Less than two connections to node NC_02.  This node is used by V4.
 Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
 Starting Gmin stepping
 Gmin = 10
@@ -12,11 +18,11 @@ Gmin = 0.000142725
 vernier = 0.5
 vernier = 0.25
 vernier = 0.125
-Gmin = 3.74144e-005
 vernier = 0.0625
 vernier = 0.03125
 vernier = 0.015625
 vernier = 0.0078125
+Gmin = 9.13439e-005
 vernier = 0.00390625
 vernier = 0.00195313
 vernier = 0.000976563
@@ -33,36 +39,37 @@ Source Step = 3.0303%
 vernier = 0.25
 Source stepping failed
 
-Pseudo Transient succeeded in finding the operating point at 327.806 ms.
-Heightened Def Con from 5.34874e-005 to 5.34884e-005
-Heightened Def Con from 0.000103897 to 0.000103898
-Heightened Def Con from 0.000449549 to 0.000449549
-Heightened Def Con from 0.00154959 to 0.00154959
-Heightened Def Con from 0.00248964 to 0.00248964
-Heightened Def Con from 0.00265462 to 0.00265462
-Heightened Def Con from 0.0027047 to 0.0027047
-Heightened Def Con from 0.0033347 to 0.0033347
-Heightened Def Con from 0.00523919 to 0.00523919
-Heightened Def Con from 0.00525913 to 0.00525913
-Heightened Def Con from 0.00560916 to 0.00560916
-Heightened Def Con from 0.00718916 to 0.00718916
-Heightened Def Con from 0.00820923 to 0.00820923
-Heightened Def Con from 0.00951926 to 0.00951926
+Pseudo Transient succeeded in finding the operating point at 327.757 ms.
+Heightened Def Con from 9.8263e-005 to 9.8264e-005
+Heightened Def Con from 0.000873938 to 0.000873938
+Heightened Def Con from 0.00310401 to 0.00310401
+Heightened Def Con from 0.00527484 to 0.00527484
+Heightened Def Con from 0.00547977 to 0.00547977
+Heightened Def Con from 0.00551398 to 0.00551398
+Heightened Def Con from 0.00624984 to 0.00624984
+Heightened Def Con from 0.0064348 to 0.0064348
+Heightened Def Con from 0.0074548 to 0.0074548
+Heightened Def Con from 0.00822479 to 0.00822479
+Heightened Def Con from 0.00839994 to 0.00839994
+Heightened Def Con from 0.00861491 to 0.00861491
+Heightened Def Con from 0.00881991 to 0.00881991
+Heightened Def Con from 0.00932495 to 0.00932496
+Heightened Def Con from 0.00998498 to 0.00998498
 
-Date: Thu Jun 03 00:23:49 2021
-Total elapsed time: 5.981 seconds.
+Date: Sun Jun 06 15:34:33 2021
+Total elapsed time: 7.137 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 1432946
-traniter = 1424405
-tranpoints = 439432
-accept = 325934
-rejected = 113534
-matrix size = 18
+totiter = 1433562
+traniter = 1425145
+tranpoints = 439633
+accept = 326094
+rejected = 113573
+matrix size = 25
 fillins = 13
 solver = Normal
-Matrix Compiler1: 1.21 KB object code size  0.4/0.3/[0.1]
-Matrix Compiler2: 1.65 KB object code size  0.2/0.3/[0.2]
+Matrix Compiler1: 1.50 KB object code size  0.3/0.2/[0.1]
+Matrix Compiler2: 2.02 KB object code size  0.4/0.5/[0.2]
 
